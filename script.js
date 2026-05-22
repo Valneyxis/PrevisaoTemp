@@ -163,42 +163,38 @@ function changeBackground(weatherMain) {
 
   const body = document.body;
 
-  switch (weatherMain) {
+  const baseClasses =
+    'min-h-screen flex items-center justify-center p-4 text-white transition-all duration-500';
 
-    case 'Clear':
+  const backgrounds = {
+    Clear:
+      'bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-900',
 
-      body.className =
-        'min-h-screen bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-900 flex items-center justify-center p-4 text-white transition-all duration-500';
+    Clouds:
+      'bg-gradient-to-br from-slate-500 via-slate-700 to-slate-900',
 
-      break;
+    Rain:
+      'bg-gradient-to-br from-gray-700 via-slate-800 to-black',
 
-    case 'Clouds':
+    Drizzle:
+      'bg-gradient-to-br from-gray-700 via-slate-800 to-black',
 
-      body.className =
-        'min-h-screen bg-gradient-to-br from-slate-500 via-slate-700 to-slate-900 flex items-center justify-center p-4 text-white transition-all duration-500';
+    Thunderstorm:
+      'bg-gradient-to-br from-gray-900 via-slate-950 to-black',
 
-      break;
+    Snow:
+      'bg-gradient-to-br from-cyan-100 via-slate-300 to-slate-500',
 
-    case 'Rain':
-    case 'Drizzle':
+    Mist:
+      'bg-gradient-to-br from-zinc-400 via-zinc-600 to-zinc-800',
 
-      body.className =
-        'min-h-screen bg-gradient-to-br from-gray-700 via-slate-800 to-black flex items-center justify-center p-4 text-white transition-all duration-500';
+    Haze:
+      'bg-gradient-to-br from-amber-200 via-orange-400 to-zinc-700',
+  };
 
-      break;
+  const selectedBackground =
+    backgrounds[weatherMain] ||
+    'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900';
 
-    case 'Thunderstorm':
-
-      body.className =
-        'min-h-screen bg-gradient-to-br from-gray-900 via-slate-950 to-black flex items-center justify-center p-4 text-white transition-all duration-500';
-
-      break;
-
-    default:
-
-      body.className =
-        'min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4 text-white transition-all duration-500';
-
-  }
-
+  body.className = `${baseClasses} ${selectedBackground}`;
 }

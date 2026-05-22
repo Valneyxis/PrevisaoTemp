@@ -1,216 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
 
-  <title>Weather Forecast</title>
-</head>
-<body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4 text-white transition-all duration-500">
-
-  <div class="w-full max-w-md bg-white/10 border border-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-6">
-    
-    <div id="header" class="mb-6">
-      <h1 class="text-4xl font-bold text-center tracking-wide">
-        Previsão do Tempo
-      </h1>
-
-      <p class="text-center text-slate-400 mt-2">
-        Descubra o clima atual em qualquer cidade
-      </p>
-    </div>
-
-    <!-- SEARCH -->
-    <form
-      id="search"
-      class="flex items-center gap-3 bg-slate-700 rounded-2xl px-4 py-3 focus-within:ring-2 focus-within:ring-cyan-400 transition"
+    <title>Previsão do Tempo</title>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4 text-white transition-all duration-500"
+  >
+    <div
+      class="w-full max-w-md bg-white/10 border border-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-6"
     >
+      <div id="header" class="mb-6">
+        <h1 class="text-4xl font-bold text-center tracking-wide">
+          Previsão do Tempo
+        </h1>
 
-      <i class="fa-solid fa-location-dot text-cyan-400 text-lg"></i>
+        <p class="text-center text-slate-400 mt-2">
+          Descubra o clima atual em qualquer cidade
+        </p>
+      </div>
 
-      <input
-        type="search"
-        name="city_name"
-        id="city_name"
-        placeholder="Buscar cidade"
-        class="flex-1 bg-transparent outline-none placeholder:text-slate-400 text-white"
+      <!-- Formulario de busca -->
+      <form
+        id="search"
+        class="flex items-center gap-3 bg-slate-700 rounded-2xl px-4 py-3 focus-within:ring-2 focus-within:ring-cyan-400 transition"
+      >
+        <i class="fa-solid fa-location-dot text-cyan-400 text-lg"></i>
+
+        <input
+          type="search"
+          name="city_name"
+          id="city_name"
+          placeholder="Buscar cidade"
+          class="flex-1 bg-transparent outline-none placeholder:text-slate-400 text-white"
         />
 
-      <button
-        type="submit"
-        class="w-10 h-10 rounded-xl bg-cyan-500 hover:bg-cyan-600 transition flex items-center justify-center"
-      >
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-    </form>
+        <button
+          type="submit"
+          class="w-10 h-10 rounded-xl bg-cyan-500 hover:bg-cyan-600 transition flex items-center justify-center"
+        >
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
 
-    <!-- LOADING -->
-    <div
-      id="loading"
-      class="hidden justify-center mt-8"
-    >
-      <div class="w-10 h-10 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
-    </div>
+      <!-- LOADING -->
+      <div id="loading" class="hidden justify-center mt-8">
+        <div
+          class="w-10 h-10 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin"
+        ></div>
+      </div>
 
-    <!-- WEATHER -->
-    <div
-      id="weather"
-      class="mt-8 hidden opacity-0 translate-y-4 transition-all duration-500"
-    >
-     <h1
-        id="title"
-        class="text-3xl font-bold text-center tracking-wide"
-      >
-        Fortaleza, BR
-      </h1>
-
-      <!-- INFOS -->
+      <!-- Clima da cidade -->
       <div
-        id="infos"
-        class="mt-6"
+        id="weather"
+        class="mt-8 hidden opacity-0 translate-y-4 transition-all duration-500"
       >
+        <h1 id="title" class="text-3xl font-bold text-center tracking-wide">
+          Fortaleza, BR
+        </h1>
 
-        <!-- TEMP -->
-        <div
-          id="temp"
-          class="flex items-center justify-center gap-4"
-        >
-
-          <img
-            id="temp_img"
-            src="https://openweathermap.org/img/wn/04d@2x.png"
-            alt="Ícone do clima"
-                        class="w-28 h-28"
-          />
-
-          <div>
-
-            <p
-              id="temp_value"
-              class="text-6xl font-bold leading-none"
-            >
-              32°C
-            </p>
-
-            <p
-              id="temp_description"
-              class="text-slate-400 capitalize mt-2"
-            >
-              Ensolarado
-            </p>
-
-          </div>
-        </div>
-
-        <!-- OTHER INFOS -->
-        <div
-          id="other_infos"
-          class="grid grid-cols-2 gap-4 mt-8"
-        >
-
-          <!-- MAX -->
-          <div class="bg-slate-700 rounded-2xl p-4 flex items-center gap-3">
-
-            <i
-              class="fa-solid fa-temperature-high text-2xl text-red-400"
-            ></i>
+        <!-- Informações -->
+        <div id="infos" class="mt-6">
+          <!-- Temperatura da cidade -->
+          <div id="temp" class="flex items-center justify-center gap-4">
+            <img
+              id="temp_img"
+              src="https://openweathermap.org/img/wn/04d@2x.png"
+              alt="Ícone do clima"
+              class="w-28 h-28"
+            />
 
             <div>
-              <h2 class="text-sm text-slate-300">
-                Temp. max
-              </h2>
-
-              <p
-                id="temp_max"
-                class="font-bold text-lg"
-              >
+              <p id="temp_value" class="text-6xl font-bold leading-none">
                 32°C
               </p>
-            </div>
-          </div>
 
-          <!-- MIN -->
-          <div class="bg-slate-700 rounded-2xl p-4 flex items-center gap-3">
-
-            <i
-              class="fa-solid fa-temperature-low text-2xl text-blue-400"
-            ></i>
-
-            <div>
-              <h2 class="text-sm text-slate-300">
-                Temp. min
-              </h2>
-
-              <p
-                id="temp_min"
-                class="font-bold text-lg"
-              >
-                12°C
-                </p>
-            </div>
-          </div>
-
-          <!-- HUMIDITY -->
-          <div class="bg-slate-700 rounded-2xl p-4 flex items-center gap-3">
-
-            <i
-              class="fa-solid fa-droplet text-2xl text-cyan-400"
-            ></i>
-
-            <div>
-              <h2 class="text-sm text-slate-300">
-                Umidade
-              </h2>
-
-              <p
-                id="humidity"
-                class="font-bold text-lg"
-              >
-                50%
+              <p id="temp_description" class="text-slate-400 capitalize mt-2">
+                Ensolarado
               </p>
             </div>
           </div>
 
-          <!-- WIND -->
-        <div class="bg-slate-700 rounded-2xl p-4 flex items-center gap-3">
+          <!-- Outras informações -->
+          <div id="other_infos" class="grid grid-cols-2 gap-4 mt-8">
+            <!-- Temperatura maxima -->
+            <div class="bg-slate-700 rounded-2xl p-4 flex items-center gap-3">
+              <i class="fa-solid fa-temperature-high text-2xl text-red-400"></i>
 
-            <i
-              class="fa-solid fa-wind text-2xl text-gray-300"
-            ></i>
+              <div>
+                <h2 class="text-sm text-slate-300">Temp. max</h2>
 
-            <div>
-              <h2 class="text-sm text-slate-300">
-                Vento
-              </h2>
+                <p id="temp_max" class="font-bold text-lg">32°C</p>
+              </div>
+            </div>
 
-              <p
-                id="wind"
-                class="font-bold text-lg"
-              >
-                50 km/h
-              </p>
+            <!-- Temperatura minima -->
+            <div class="bg-slate-700 rounded-2xl p-4 flex items-center gap-3">
+              <i class="fa-solid fa-temperature-low text-2xl text-blue-400"></i>
+
+              <div>
+                <h2 class="text-sm text-slate-300">Temp. min</h2>
+
+                <p id="temp_min" class="font-bold text-lg">12°C</p>
+              </div>
+            </div>
+
+            <!-- Umidade da cidade -->
+            <div class="bg-slate-700 rounded-2xl p-4 flex items-center gap-3">
+              <i class="fa-solid fa-droplet text-2xl text-cyan-400"></i>
+
+              <div>
+                <h2 class="text-sm text-slate-300">Umidade</h2>
+
+                <p id="humidity" class="font-bold text-lg">50%</p>
+              </div>
+            </div>
+
+            <!-- Vento na cidade -->
+            <div class="bg-slate-700 rounded-2xl p-4 flex items-center gap-3">
+              <i class="fa-solid fa-wind text-2xl text-gray-300"></i>
+
+              <div>
+                <h2 class="text-sm text-slate-300">Vento</h2>
+
+                <p id="wind" class="font-bold text-lg">50 km/h</p>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
+
+      <!-- Alerta -->
+      <div id="alert" class="mt-6 text-center text-red-400 font-medium"></div>
     </div>
 
-     <!-- ALERT -->
-    <div
-      id="alert"
-      class="mt-6 text-center text-red-400 font-medium"
-    ></div>
-
-  </div>
-
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
